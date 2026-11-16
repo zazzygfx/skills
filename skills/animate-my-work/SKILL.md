@@ -3,6 +3,7 @@ name: animate-my-work
 description: Use when I want my own designs animated, such as "animate this Figma file", "make a launch film from these frames", "explainer for X" or "/animate-my-work". It storyboards in Figma, then Remotion renders it, with synced music and loud SFX.
 metadata:
   summary: Animates my designs into motion films with Remotion
+  version: 1.1.0
 ---
 
 # Animate my work

@@ -115,9 +115,9 @@ function reach(fx: CutFx): [number, number] {
 }
 
 // ---------- scene-level style ----------
-export type SceneStyle = {visible: boolean; x: number; y: number; scale: number; rot: number; skew: number; blur: number; opacity: number; clip?: string; origin?: string; z: number; cam: number; bgK: number; camT: string};
+export type SceneStyle = {visible: boolean; x: number; y: number; scale: number; rot: number; skew: number; blur: number; opacity: number; clip?: string; origin?: string; z: number; cam: number; bgK: number; camT: string; camS: number; camFx: number; camFy: number};
 export function sceneStyle(spec: FilmSpec, tl: Timeline, s: number, t: number): SceneStyle {
-  const w = tl.W[s]; const st: SceneStyle = {visible: t >= w.vin && t <= w.vout, x: 0, y: 0, scale: 1, rot: 0, skew: 0, blur: 0, opacity: 1, z: 10 + w.idx, cam: 1, bgK: 0, camT: ''};
+  const w = tl.W[s]; const st: SceneStyle = {visible: t >= w.vin && t <= w.vout, x: 0, y: 0, scale: 1, rot: 0, skew: 0, blur: 0, opacity: 1, z: 10 + w.idx, cam: 1, bgK: 0, camT: '', camS: 1, camFx: 0, camFy: 0};
   const g = tl.groups[s]; const k = c01((t - g[0]) / (g[1] - g[0]));
   st.cam = 1 + 0.06 * k; st.bgK = c01((t - w.vin) / (w.vout - w.vin));
   const W0 = spec.w / 2, H0 = spec.h / 2; let cs = 1, fx = W0, fy = H0;
@@ -129,7 +129,7 @@ export function sceneStyle(spec: FilmSpec, tl: Timeline, s: number, t: number): 
       if (t > p.t) { const u = E.p2io(c01((t - p.t) / (q.t - p.t))); cs = p.sc + (q.sc - p.sc) * u; fx = p.x + (q.x - p.x) * u; fy = p.y + (q.y - p.y) * u; } break; }
   }
   const S = cs * st.cam;
-  st.camT = `translate(${W0}px,${H0}px) scale(${S}) translate(${-fx}px,${-fy}px)`;
+  st.camT = `translate(${W0}px,${H0}px) scale(${S}) translate(${-fx}px,${-fy}px)`; st.camS = S; st.camFx = fx; st.camFy = fy;
   const W_ = spec.w, H_ = spec.h;
   for (const c of spec.cuts) {
     const T = tl.cutT(c); const isA = tl.from(c) === s, isB = c.to === s; if (!isA && !isB) continue;
@@ -237,7 +237,8 @@ export function cursorAt(spec: FilmSpec, tl: Timeline, c: CursorTrack, t: number
   const pts = c.path.map(([b, x, y]) => ({t: tl.at(c.s, b), x, y}));
   if (t < pts[0].t - 0.001) return null;
   const out = c.out !== undefined ? tl.at(c.s, c.out) : tl.W[c.s].vout;
-  const op = prog(t, pts[0].t, 0.2) * (1 - prog(t, out, 0.2));
+  const fin = pts[0].t <= tl.W[c.s].t0 + 1e-3 ? 1 : prog(t, pts[0].t, 0.2); // a cursor carried over a match cut never blinks
+  const op = fin * (1 - prog(t, out, 0.2));
   let p = pts[0];
   for (let k = 1; k < pts.length; k++) {
     const q = pts[k]; if (t >= q.t) { p = q; continue; }

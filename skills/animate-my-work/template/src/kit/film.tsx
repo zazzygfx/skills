@@ -45,14 +45,15 @@ export function Film({spec, layers, glows}: Props) {
     const uni = sh.uniform ?? true;
     handIn[kb] = uni ? prog(t, T + d * 0.05, d * 0.45, E.out) : (t >= T + d / 2 - 0.05 ? 1 : 0);
     if (t < T - d / 2 || t > T + d / 2 + (uni ? d * 0.1 : 0.15)) continue;
-    const sa = sceneStyle(spec, tl, a, T - d / 2).cam, sb = sceneStyle(spec, tl, c.to, T + d / 2).cam;
-    const tr = (l: Layer, s: number) => ({x: spec.w / 2 + (l.x - spec.w / 2) * s, y: spec.h / 2 + (l.y - spec.h / 2) * s, w: l.w * s, h: l.h * s});
-    const r = tr(A, sa), q = tr(Bl, sb), k = prog(t, T - d / 2, d, E.p4io);
+    // where each layer actually sits on screen: through its scene's camera at the hand-off times
+    const ca = sceneStyle(spec, tl, a, T - d / 2), cb = sceneStyle(spec, tl, c.to, T + d / 2);
+    const tr = (l: Layer, c: {camS: number; camFx: number; camFy: number}) => ({x: spec.w / 2 + (l.x - c.camFx) * c.camS, y: spec.h / 2 + (l.y - c.camFy) * c.camS, w: l.w * c.camS, h: l.h * c.camS});
+    const r = tr(A, ca), q = tr(Bl, cb), k = prog(t, T - d / 2, d, E.p4io);
     let left: number, top: number, sx: number, sy: number, op = 1;
     if (uni) { const s = Math.sqrt((q.w * q.h) / (r.w * r.h)); const cx = r.x + r.w / 2 + (q.x + q.w / 2 - r.x - r.w / 2) * k, cy = r.y + r.h / 2 + (q.y + q.h / 2 - r.y - r.h / 2) * k;
       sx = sy = 1 + (s - 1) * k; left = cx - (r.w * sx) / 2; top = cy - (r.h * sy) / 2; op = 1 - prog(t, T + d * 0.1, d * 0.4); }
     else { left = r.x + (q.x - r.x) * k; top = r.y + (q.y - r.y) * k; sx = 1 + (q.w / r.w - 1) * k; sy = 1 + (q.h / r.h - 1) * k; op = t > T + d / 2 ? 0 : 1; }
-    flights.push({src: A, box: {position: 'absolute', left, top, width: r.w, height: r.h, transform: `scale(${sx},${sy})`, transformOrigin: '0 0', opacity: op}});
+    flights.push({src: A, box: {position: 'absolute', left, top, width: r.w, height: r.h, borderRadius: A.radius ? A.radius * ca.camS : undefined, transform: `scale(${sx},${sy})`, transformOrigin: '0 0', opacity: op}});
   }
   const ov = overlays(spec, tl, t);
 

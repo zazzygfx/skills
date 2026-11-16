@@ -56,7 +56,11 @@ Reading time once text has stopped moving: max(1.2 s, 0.35 s per word + 0.5 s). 
 - **The camera resetting at a match cut.** Chains share one drift (`timeline().groups`). Never give the second scene a
   fresh camera.
 - **Fractional z-index.** It's ignored; the engine uses integers.
-- **A shared element ignoring the camera.** The engine scales both rects by each scene's camera at the hand-off times.
+- **A shared element ignoring the camera.** The engine maps both rects through each scene's full keyed camera (scale
+  and focus point) at the hand-off times, so a flight lands exactly where its target sits on screen.
+- **A cursor blinking at a match cut.** A cursor whose path starts at the scene's first frame is carried over, so it
+  stays fully visible instead of fading in again.
+- **Square corners on a flying clone.** A flight keeps its layer's `radius`, scaled by the camera.
 - **A before image misregistered with its after.** See the truth checks in `storyboard.md`.
 - **Fonts loaded late.** Text is images from Figma, so this only bites in code-drawn scenes. Use `useThemeFonts`
   from the kit there.
