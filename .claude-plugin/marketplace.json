@@ -1,0 +1,14 @@
+{
+  "name": "zazzy-skills",
+  "owner": {"name": "Zazzy", "url": "https://x.com/zazzygfx"},
+  "metadata": {"description": "Zazzy's skills for AI-driven design and motion", "version": "1.0.0"},
+  "plugins": [
+    {
+      "name": "zazzy-motion",
+      "description": "Animate your own designs: storyboard in Figma, render with Remotion, with designed transitions, synced music and loud, clear SFX",
+      "source": "./",
+      "strict": false,
+      "skills": ["./skills/animate-my-work"]
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+node_modules
+.remotion
+out
+*_raw.wav
+public/*/music.wav
+public/*/sfx/
+src/*/audio/*.wav

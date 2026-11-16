@@ -1,0 +1,32 @@
+{
+  "lufs": -14.05,
+  "ceilingDbtp": -2.9,
+  "offsetDb": 20.1,
+  "levelRatio": 0.45,
+  "anchor": -18,
+  "glueMaxDb": 2.04,
+  "limiterMaxDb": 3.36,
+  "bedGainDb": -12.5,
+  "grid": {
+    "fps": 60,
+    "bpm": 120,
+    "beat": 30,
+    "drop": 120,
+    "gate": 312,
+    "end": 360,
+    "frames": 480,
+    "key": "D minor"
+  },
+  "kicks": [
+    120,
+    228,
+    270
+  ],
+  "sfxDynamicsDb": {
+    "land": -0.87,
+    "flip": -0.26,
+    "tick": -1.13,
+    "press": -0.63,
+    "letter": -1.71
+  }
+}
