@@ -25,6 +25,21 @@ Skills that turn designs into animation and film.
 
 <!-- skills:end -->
 
+## How to use these skills
+
+A skill is a set of instructions (plus any templates and scripts) that teaches Claude how to do one job really well.
+You install it once, and then you can call it in any project.
+
+1. **Install Claude Code.** Use the [desktop app](https://claude.com/claude-code) (the Code tab) or the terminal app.
+2. **Install the skills.** Pick one of the ways under [Install](#install) below.
+3. **Open Claude Code in your project folder** and type the skill's command, for example `/animate-my-work`, followed
+   by what you want. You can also just describe the job in plain words, and Claude picks the right skill.
+4. **Read the skill's page first.** Click a skill in the catalog above: its page lists what you need, the commands and
+   example prompts.
+
+Each skill page has a **"Before you start"** list. Some skills need extra tools, such as Node, ffmpeg or a Figma
+connection.
+
 ## Install
 
 **Claude Code** (all skills at once):
