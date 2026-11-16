@@ -46,6 +46,11 @@ design, and the skill brings the craft.
 
 <!-- skills:start -->
 
+### 🧭 Start here
+
+- **[ask-zazzy](skills/ask-zazzy/)**: Not sure which skill to use? Describe what you want to make, and it points you to the
+  right skill (or mode), with the exact line to type and what comes next.
+
 ### 🎨 Design
 
 _Coming soon._
