@@ -60,7 +60,7 @@ Pick **one** of these.
 In Claude Code, type:
 
 ```
-/plugin marketplace add zazzygfx/zazzy-skills
+/plugin marketplace add zazzygfx/skills
 /plugin install zazzy-motion@zazzy-skills
 ```
 
@@ -69,7 +69,7 @@ You get updates whenever the repo changes. As a plugin, the command may appear a
 ### Option B: copy it into your skills folder
 
 ```bash
-git clone https://github.com/zazzygfx/zazzy-skills.git
+git clone https://github.com/zazzygfx/skills.git zazzy-skills
 mkdir -p ~/.claude/skills
 cp -R zazzy-skills/skills/animate-my-work ~/.claude/skills/animate-my-work
 ```
@@ -79,7 +79,7 @@ Every Claude Code session on your computer can now run `/animate-my-work`.
 ### Option C: any agent that reads Agent Skills
 
 ```bash
-npx skills@latest add zazzygfx/zazzy-skills
+npx skills@latest add zazzygfx/skills
 ```
 
 ---
