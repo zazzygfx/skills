@@ -1,7 +1,7 @@
 {
   "name": "zazzy-skills",
   "owner": {"name": "Zazzy", "url": "https://x.com/zazzygfx"},
-  "metadata": {"description": "Zazzy's skills for AI-driven design and motion", "version": "1.0.0"},
+  "metadata": {"description": "Zazzy's skills for AI-driven design and motion", "version": "1.0.1"},
   "plugins": [
     {
       "name": "zazzy-motion",

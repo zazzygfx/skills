@@ -62,7 +62,7 @@ if 'sub' not in FX:
     n=int(1.2*SR); t=np.arange(n)/SR; f=50-15*t/1.2; s=np.sin(2*np.pi*np.cumsum(f)/SR)*np.exp(-t*3); s/=np.abs(s).max()/.9; FX['sub']=np.stack([s,s])
 FX.setdefault('shimmer',FX['swish']); FX.setdefault('swell',FX['whoosh'])
 n=int(.035*SR); key=synth_noise(n,1500,6000)*np.exp(-np.linspace(0,9,n)); key/=np.abs(key).max()/.9; FX['type']=np.stack([key,key])
-BASE={'whoosh':-2,'swish':-4,'click':4,'pop':-1,'tick':-3,'type':-5,'shimmer':-8,'swell':-8,'sub':-3}
+BASE={'whoosh':-2,'swish':-4,'click':7,'pop':-1,'tick':-3,'type':-5,'shimmer':-8,'swell':-8,'sub':-3}
 LEAD={'whoosh':0.18,'swish':0.08}
 sfx=np.zeros((2,N)); duck=np.ones(N); used=[]
 for c in sorted(cfg['cues'],key=lambda c:c['t']):

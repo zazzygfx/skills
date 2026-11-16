@@ -42,7 +42,7 @@ and no two swells within 1.5 s. Aim for 0.5–1.5 strong hits a second (the refe
 1. Normalise every SFX file to a 0.9 peak; raw files differ by 20 dB, which is how sound effects end up buried.
 2. Music at −9 dB.
 3. Duck the music to 0.55 around each whoosh or sub, and to 0.7 around each swish, from −0.15 to +0.45 s.
-4. SFX gains: whoosh −2, swish −4, click +4, pop −1, tick −3, type −5, shimmer −8, swell −8, sub −3 dB.
+4. SFX gains: whoosh −2, swish −4, click +7, pop −1, tick −3, type −5, shimmer −8, swell −8, sub −3 dB.
 5. Fade out over the last 0.4 s.
 6. Run loudnorm to −14 LUFS integrated and −1 dBTP.
 
@@ -57,4 +57,4 @@ At each sound's own peak, its 50 ms RMS over the music's:
 | pop, tick | +2 dB or more |
 
 Below target means buried: raise that gain and mix again. Report these numbers in the hand-off. The kit demo measured
-whoosh +20.9, swish +7.9, click +4.9 (one click under a busy bar), pop +10.1 and tick +9.2.
+whoosh +20.9, swish +7.9, click +7.9, pop +10.1 and tick +9.2.
